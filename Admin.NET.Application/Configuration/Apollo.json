@@ -1,0 +1,9 @@
+{
+  "$schema": "https://gitee.com/dotnetchina/Furion/raw/v4/schemas/v4/furion-schema.json",
+
+  "apollo": {
+    "AppId": "SampleApp",
+    "Env": "DEV",
+    "MetaServer": "http://192.168.2.133:8080"
+  }
+}
