@@ -26,8 +26,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Plugin.DingTalk",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Plugin.ReZero", "Plugins\Admin.NET.Plugin.ReZero\Admin.NET.Plugin.ReZero.csproj", "{04AB2E76-DE8B-4EFD-9F48-F8D4C0993106}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperExtensions", "..\..\..\程序\程序升级\20240423\Admin.NET\DapperExtensions\DapperExtensions.csproj", "{B2667536-843D-474B-BD13-2A9B4CF999F0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSample.AppHost", "AspireSample\AspireSample.AppHost\AspireSample.AppHost.csproj", "{1EDB07BF-586D-45D2-82E0-CD7CED08C87C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSample.ServiceDefaults", "AspireSample\AspireSample.ServiceDefaults\AspireSample.ServiceDefaults.csproj", "{52758792-195E-4B5F-BC15-C8465191795A}"
@@ -35,6 +33,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSample.ApiService", "AspireSample\AspireSample.ApiService\AspireSample.ApiService.csproj", "{90C77C2F-78EB-4FAA-BF77-F1F0A328324C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSample.Web", "AspireSample\AspireSample.Web\AspireSample.Web.csproj", "{4A9D1AD7-39A5-459B-B669-ADF991A1F26E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperExtensions", "DapperExtensions\DapperExtensions.csproj", "{19625DE5-5EF9-499D-806D-BD28A9CFB254}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,10 +74,6 @@ Global
 		{04AB2E76-DE8B-4EFD-9F48-F8D4C0993106}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04AB2E76-DE8B-4EFD-9F48-F8D4C0993106}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04AB2E76-DE8B-4EFD-9F48-F8D4C0993106}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2667536-843D-474B-BD13-2A9B4CF999F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2667536-843D-474B-BD13-2A9B4CF999F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2667536-843D-474B-BD13-2A9B4CF999F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2667536-843D-474B-BD13-2A9B4CF999F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1EDB07BF-586D-45D2-82E0-CD7CED08C87C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EDB07BF-586D-45D2-82E0-CD7CED08C87C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EDB07BF-586D-45D2-82E0-CD7CED08C87C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -94,6 +90,10 @@ Global
 		{4A9D1AD7-39A5-459B-B669-ADF991A1F26E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A9D1AD7-39A5-459B-B669-ADF991A1F26E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A9D1AD7-39A5-459B-B669-ADF991A1F26E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19625DE5-5EF9-499D-806D-BD28A9CFB254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19625DE5-5EF9-499D-806D-BD28A9CFB254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19625DE5-5EF9-499D-806D-BD28A9CFB254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19625DE5-5EF9-499D-806D-BD28A9CFB254}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

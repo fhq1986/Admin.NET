@@ -251,14 +251,4 @@ public class SysConfigService : IDynamicApiController, IScoped
     {
         return App.Configuration[name];
     }
-    /// <summary>
-    ///选项Option测试
-    /// </summary>
-    /// <returns></returns>
-    [DisplayName("Option")]
-    [AllowAnonymous]
-    public async Task<string> GetOption(string name)
-    {
-        return _configuration[name];
-    }
 }
