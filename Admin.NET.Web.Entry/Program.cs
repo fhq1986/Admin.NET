@@ -6,6 +6,7 @@
 
 using Com.Ctrip.Framework.Apollo;
 using Furion;
+using Microsoft.Extensions.Configuration;
 
 Serve.Run(RunOptions.Default.ConfigureConfiguration((env, configuration) => {
      RunOptions.Default.AddWebComponent<WebComponent>();
@@ -28,15 +29,15 @@ public class WebComponent : IWebComponent
             u.Limits.MaxRequestBodySize = null;
         });
         //使用apollo配置中心
-        builder.Host.ConfigureAppConfiguration((context, b) =>
+        var enabled = builder.Configuration.Get<bool>("Apollo:Enabled");
+        if(enabled)
         {
-            IConfigurationRoot configurationRoot = b.Build();
-            b.AddApollo(configurationRoot.GetSection("apollo"))
-            .AddDefault();
-        });
+            builder.Configuration.AddApollo(builder.Configuration.GetSection("Apollo")).AddDefault();
+        }
+
         //使用Nacos
-        var useNacos = App.Configuration["Nacos:Enabled"];
-        if(useNacos=="true")
+        enabled = builder.Configuration.Get<bool>("Nacos:Enabled");
+        if(enabled)
         {
             builder.Host.UseNacosConfig("Nacos");
         }

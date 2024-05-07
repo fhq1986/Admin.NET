@@ -207,7 +207,7 @@ public class SysConfigService : IDynamicApiController, IScoped
     {
         var val= App.Configuration[name];
         //var val2=await _configuration.GetConfig(dataId,group,3000);
-        return val;
+        return await Task.FromResult(val);
     }
     /// <summary>
     /// dapper使用达梦测试
@@ -242,13 +242,11 @@ public class SysConfigService : IDynamicApiController, IScoped
     /// <summary>
     ///集成apollo测试
     /// </summary>
-    /// <param name="page">当前页码</param>
-    /// <param name="pageSize">每页记录数</param>
     /// <returns></returns>
     [DisplayName("获取apollo配置")]
     [AllowAnonymous]
     public async Task<string> GetApolloConfig([Required] string name)
     {
-        return App.Configuration[name];
+        return await Task.FromResult(App.Configuration[name]);
     }
 }
