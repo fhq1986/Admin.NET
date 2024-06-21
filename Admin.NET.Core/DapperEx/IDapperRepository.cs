@@ -153,7 +153,7 @@ public partial interface IDapperRepository<TEntity> : IDapperRepository
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
     /// <returns></returns>
-    long Insert(TEntity entity, IDbTransaction transaction = null, int? commandTimeout = null);
+    dynamic Insert(TEntity entity, IDbTransaction transaction = null, int? commandTimeout = null);
 
     /// <summary>
     /// 新增一条
@@ -161,9 +161,8 @@ public partial interface IDapperRepository<TEntity> : IDapperRepository
     /// <param name="entity"></param>
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
-    /// <param name="sqlAdapter"></param>
     /// <returns></returns>
-    Task<int> InsertAsync(TEntity entity, IDbTransaction transaction = null, int? commandTimeout = null, ISqlAdapter sqlAdapter = null);
+    Task<dynamic> InsertAsync(TEntity entity, IDbTransaction transaction = null, int? commandTimeout = null);
 
     /// <summary>
     /// 新增多条
@@ -172,7 +171,7 @@ public partial interface IDapperRepository<TEntity> : IDapperRepository
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
     /// <returns></returns>
-    long Insert(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null);
+    void Insert(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null);
 
     /// <summary>
     /// 新增多条
@@ -180,9 +179,8 @@ public partial interface IDapperRepository<TEntity> : IDapperRepository
     /// <param name="entities"></param>
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
-    /// <param name="sqlAdapter"></param>
     /// <returns></returns>
-    Task<int> InsertAsync(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null, ISqlAdapter sqlAdapter = null);
+    Task InsertAsync(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null);
 
     /// <summary>
     /// 更新一条
@@ -209,7 +207,7 @@ public partial interface IDapperRepository<TEntity> : IDapperRepository
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
     /// <returns></returns>
-    bool Update(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null);
+    void Update(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null);
 
     /// <summary>
     /// 更新多条
@@ -245,7 +243,7 @@ public partial interface IDapperRepository<TEntity> : IDapperRepository
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
     /// <returns></returns>
-    bool Delete(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null);
+    void Delete(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null);
 
     /// <summary>
     /// 删除多条

@@ -122,7 +122,6 @@ public class SysJobService : IDynamicApiController, ITransient
         var isExist = await _sysJobDetailRep.IsAnyAsync(u => u.JobId == input.JobId && u.Id != input.Id);
         if (isExist)
             throw Oops.Oh(ErrorCodeEnum.D1006);
-
         var sysJobDetail = await _sysJobDetailRep.GetFirstAsync(u => u.Id == input.Id);
         if (sysJobDetail.JobId != input.JobId)
             throw Oops.Oh(ErrorCodeEnum.D1704);

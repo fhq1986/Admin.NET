@@ -3,10 +3,12 @@
 
   "EventBus": {
     "RabbitMQ": {
+      "Enabled": false,
       "UserName": "adminnet",
       "Password": "adminnet++123456",
       "HostName": "127.0.0.1",
       "Port": 5672
-    }
+    },
+    "Storage": "Memory" //支持:Memory,MySql,Sqlite,SqlServer
   }
 }

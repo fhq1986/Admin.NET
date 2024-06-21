@@ -9,6 +9,7 @@ using DapperExtensions;
 using DapperExtensions.Predicate;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Nacos.V2;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 
 namespace Admin.NET.Core.Service;
 
@@ -247,6 +248,6 @@ public class SysConfigService : IDynamicApiController, IScoped
     [AllowAnonymous]
     public async Task<string> GetApolloConfig([Required] string name)
     {
-        return await Task.FromResult(App.Configuration[name]);
+        return await Task.FromResult(_configuration[name]);
     }
 }

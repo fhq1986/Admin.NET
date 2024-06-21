@@ -7,8 +7,8 @@
 // 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
 // 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
 
-using Dapper.Contrib.Extensions;
 using Dapper;
+using DapperExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -207,7 +207,7 @@ public partial class DapperRepository<TEntity> : DapperRepository, IDapperReposi
     /// <returns></returns>
     public virtual IEnumerable<TEntity> GetAll(IDbTransaction transaction = null, int? commandTimeout = null)
     {
-        return Context.GetAll<TEntity>(transaction, commandTimeout);
+        return Context.GetList<TEntity>(transaction, commandTimeout: commandTimeout);
     }
 
     /// <summary>
@@ -218,7 +218,7 @@ public partial class DapperRepository<TEntity> : DapperRepository, IDapperReposi
     /// <returns></returns>
     public virtual Task<IEnumerable<TEntity>> GetAllAsync(IDbTransaction transaction = null, int? commandTimeout = null)
     {
-        return Context.GetAllAsync<TEntity>(transaction, commandTimeout);
+        return Context.GetListAsync<TEntity>(transaction, commandTimeout:commandTimeout);
     }
 
     /// <summary>
@@ -228,7 +228,7 @@ public partial class DapperRepository<TEntity> : DapperRepository, IDapperReposi
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
     /// <returns></returns>
-    public virtual long Insert(TEntity entity, IDbTransaction transaction = null, int? commandTimeout = null)
+    public virtual dynamic Insert(TEntity entity, IDbTransaction transaction = null, int? commandTimeout = null)
     {
         return Context.Insert(entity, transaction, commandTimeout);
     }
@@ -239,11 +239,10 @@ public partial class DapperRepository<TEntity> : DapperRepository, IDapperReposi
     /// <param name="entity"></param>
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
-    /// <param name="sqlAdapter"></param>
     /// <returns></returns>
-    public virtual Task<int> InsertAsync(TEntity entity, IDbTransaction transaction = null, int? commandTimeout = null, ISqlAdapter sqlAdapter = null)
+    public virtual Task<dynamic> InsertAsync(TEntity entity, IDbTransaction transaction = null, int? commandTimeout = null)
     {
-        return Context.InsertAsync(entity, transaction, commandTimeout, sqlAdapter);
+        return Context.InsertAsync(entity, transaction, commandTimeout);
     }
 
     /// <summary>
@@ -253,9 +252,9 @@ public partial class DapperRepository<TEntity> : DapperRepository, IDapperReposi
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
     /// <returns></returns>
-    public virtual long Insert(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null)
+    public virtual void Insert(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null)
     {
-        return Context.Insert(entities, transaction, commandTimeout);
+         Context.Insert(entities, transaction, commandTimeout);
     }
 
     /// <summary>
@@ -264,11 +263,10 @@ public partial class DapperRepository<TEntity> : DapperRepository, IDapperReposi
     /// <param name="entities"></param>
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
-    /// <param name="sqlAdapter"></param>
     /// <returns></returns>
-    public virtual Task<int> InsertAsync(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null, ISqlAdapter sqlAdapter = null)
+    public virtual Task InsertAsync(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null)
     {
-        return Context.InsertAsync(entities, transaction, commandTimeout, sqlAdapter);
+        return Context.InsertAsync(entities, transaction, commandTimeout);
     }
 
     /// <summary>
@@ -302,9 +300,9 @@ public partial class DapperRepository<TEntity> : DapperRepository, IDapperReposi
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
     /// <returns></returns>
-    public virtual bool Update(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null)
+    public virtual void Update(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null)
     {
-        return Context.Update(entities, transaction, commandTimeout);
+         Context.Update(entities, transaction, commandTimeout);
     }
 
     /// <summary>
@@ -350,9 +348,9 @@ public partial class DapperRepository<TEntity> : DapperRepository, IDapperReposi
     /// <param name="transaction"></param>
     /// <param name="commandTimeout"></param>
     /// <returns></returns>
-    public virtual bool Delete(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null)
+    public virtual void Delete(IEnumerable<TEntity> entities, IDbTransaction transaction = null, int? commandTimeout = null)
     {
-        return Context.Delete(entities, transaction, commandTimeout);
+         Context.Delete(entities, transaction, commandTimeout);
     }
 
     /// <summary>

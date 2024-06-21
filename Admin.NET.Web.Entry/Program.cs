@@ -8,9 +8,7 @@ using Com.Ctrip.Framework.Apollo;
 using Furion;
 using Microsoft.Extensions.Configuration;
 
-Serve.Run(RunOptions.Default.ConfigureConfiguration((env, configuration) => {
-     RunOptions.Default.AddWebComponent<WebComponent>();
-}));
+Serve.Run(RunOptions.Default.AddWebComponent<WebComponent>());
 
 public class WebComponent : IWebComponent
 {
@@ -32,7 +30,8 @@ public class WebComponent : IWebComponent
         var enabled = builder.Configuration.Get<bool>("Apollo:Enabled");
         if(enabled)
         {
-            builder.Configuration.AddApollo(builder.Configuration.GetSection("Apollo")).AddDefault();
+            var opt=builder.Configuration.Get<ApolloOptions>("Apollo");
+            builder.Configuration.AddApollo(opt).AddDefault();
         }
 
         //使用Nacos

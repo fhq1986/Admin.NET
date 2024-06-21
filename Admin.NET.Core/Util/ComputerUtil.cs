@@ -4,6 +4,11 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Furion.Logging.Extensions;
+using NewLife.Model;
+using System.Net;
+using static SKIT.FlurlHttpClient.Wechat.Api.Models.ComponentTCBBatchCreateContainerServiceVersionRequest.Types;
+
 namespace Admin.NET.Core;
 
 public static class ComputerUtil
@@ -147,10 +152,44 @@ public static class ComputerUtil
     /// <returns></returns>
     public static string GetIpFromOnline()
     {
-        var url = "https://www.ip.cn/api/index?ip&type=0";
-        var str = url.GetAsStringAsync().GetAwaiter().GetResult();
-        var resp = JSON.Deserialize<IpCnResp>(str);
-        return resp.Ip + " " + resp.Address;
+        //var httpClientHandler = new HttpClientHandler
+        //{
+        //    ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true,
+        //    ClientCertificateOptions = ClientCertificateOption.Manual
+        //};
+        //using (HttpClient client = new HttpClient(httpClientHandler))
+        //{
+        //    var url = "https://www.ip.cn/api/index?ip&type=0";
+        //    try
+        //    {
+        //        var result = client.GetAsync(url).GetAwaiter().GetResult();
+        //        if (result.IsSuccessStatusCode)
+        //        {
+        //            var str = result.Content.ReadAsStringAsync().Result;
+        //            var resp = JSON.Deserialize<IpCnResp>(str);
+        //            return resp.Ip + " " + resp.Address;
+        //        }
+        //        else
+        //        {
+        //            return string.Empty;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return string.Empty;
+        //    }
+        //}
+        try
+        {
+            var url = "https://www.ip.cn/api/index?ip&type=0";
+            var str = url.GetAsStringAsync().GetAwaiter().GetResult();
+            var resp = JSON.Deserialize<IpCnResp>(str);
+            return resp.Ip + " " + resp.Address;
+        }
+        catch(Exception ex) {
+            ex.Message.LogError();
+            return string.Empty;
+        }
     }
 
     public static bool IsUnix()

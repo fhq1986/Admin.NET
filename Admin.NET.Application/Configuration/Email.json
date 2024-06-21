@@ -2,7 +2,7 @@
   "$schema": "https://gitee.com/dotnetchina/Furion/raw/v4/schemas/v4/furion-schema.json",
 
   "Email": {
-    "Host": "smtp.163.com", // 主机
+    "Host": "smtp.qq.com", // 主机
     "Port": 25, // 端口 465、994、25
     "EnableSsl": false, // 启用SSL
     "DefaultFromEmail": "448941969@qq.com", // 默认发件者邮箱

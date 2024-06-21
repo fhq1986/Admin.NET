@@ -20,12 +20,14 @@
     <PackageReference Include="AspNet.Security.OAuth.Weixin" Version="6.0.15" />
     <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
     <PackageReference Include="Dapper" Version="2.1.35" />
-    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
     <PackageReference Include="Dm" Version="1.0.0.8" />
     <PackageReference Include="DotNetCore.CAP" Version="8.1.1" />
     <PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.1.1" />
     <PackageReference Include="DotNetCore.CAP.InMemoryStorage" Version="8.1.1" />
+    <PackageReference Include="DotNetCore.CAP.MySql" Version="8.1.1" />
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="8.1.1" />
+    <PackageReference Include="DotNetCore.CAP.Sqlite" Version="8.0.1.1" />
+    <PackageReference Include="DotNetCore.CAP.SqlServer" Version="8.1.1" />
     <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.13.8" />
     <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
     <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.9.2.24" />
@@ -62,7 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\程序\程序升级\20240423\Admin.NET\DapperExtensions\DapperExtensions.csproj" />
+    <ProjectReference Include="..\DapperExtensions\DapperExtensions.csproj" />
   </ItemGroup>
 
 </Project>

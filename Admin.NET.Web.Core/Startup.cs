@@ -28,6 +28,9 @@ using System.Net;
 using System.Reflection;
 using System.Net.Mail;
 using Microsoft.Extensions.Primitives;
+using Admin.NET.Core.DapperEx;
+using Elastic.Clients.Elasticsearch.Xpack;
+using System.Linq;
 namespace Admin.NET.Web.Core;
 
 public class Startup : AppStartup
@@ -45,26 +48,25 @@ public class Startup : AppStartup
                 UseDefaultCredentials = emailOpt.UseDefaultCredentials,
                 Credentials = new NetworkCredential(emailOpt.UserName, emailOpt.Password)
             });
+        //注册Nacos
         var enableNacos = App.GetConfig<bool>("Nacos:Enabled", false);
         if(enableNacos)
         {
-            //var config = App.Configuration.GetSection("Nacos:Namespace");
-            // 注册Nacos
             //services.AddNacosAspNet(App.Configuration, section: "Nacos");
             services.AddNacosV2Config(App.Configuration, sectionName: "Nacos");
             //services.AddNacosV2Naming(App.Configuration, sectionName: "Nacos");
         }
         // 缓存注册
         services.AddCache();
-        //注册Cap
+        #region 注册Cap
         services.AddCap(option => {
             option.FailedRetryCount=5;//重试总次数
-            bool enabled = App.GetConfig<bool>("RabbitMQ:Enabled", true);
+            bool enabled = App.GetConfig<bool>("EventBus:RabbitMQ:Enabled", true);
             if (enabled)
             {
                 option.UseRabbitMQ(config =>
                 {
-                    config = App.GetConfig<RabbitMQOptions>("RabbitMQ", true);
+                    config = App.GetConfig<RabbitMQOptions>("EventBus:RabbitMQ", true);
                     //config.HostName = rabbitConfig.HostName;
                     //config.VirtualHost = rabbitConfig.VirtualHost;
                     //config.UserName = rabbitConfig.UserName;
@@ -76,10 +78,21 @@ public class Startup : AppStartup
             {
                 option.UseInMemoryMessageQueue();
             }
-            option.UseInMemoryStorage();
-            //option.UseSqlite(App.GetConfig<DbConnectionOptions>("DbConnection", true).ConnectionConfigs.First().ConnectionString);
+            //配置消息持久化方式
+            var dbOptions = App.GetConfig<DbConnectionOptions>("DbConnection", true);
+            var connectionString = dbOptions.ConnectionConfigs.First(t => t.ConfigId.ToString() == SqlSugarConst.MainConfigId)?.ConnectionString;
+            var storage= App.GetConfig<string>("EventBus:Storage");
+            switch(storage)
+            {
+                case "Memory": option.UseInMemoryStorage();break;
+                case "MySql": option.UseMySql(connectionString);break;
+                case "Sqlite": option.UseSqlite(connectionString);break;
+                case "SqlServer": option.UseSqlServer(connectionString);break;
+                default: option.UseInMemoryStorage();break;
+            };
             option.UseDashboard();
         }).AddSubscriberAssembly(Assembly.GetAssembly(typeof(Startup)));
+        #endregion
         // 注册SqlSugar
         services.AddSqlSugar();
        
